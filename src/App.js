@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Unity, useUnityContext } from "react-unity-webgl";
 import './App.css';
 
 function App() {
-  const { unityProvider, sendMessage, addEventListener, removeEventListener } = useUnityContext({
+  const [dimensions, setDimensions] = useState({ width: '100%', height: '100vh' });
+
+  const { unityProvider, isLoaded, loadingProgression, sendMessage } = useUnityContext({
     loaderUrl: "/flower-demo/Build/public.loader.js",
     dataUrl: "/flower-demo/Build/public.data",
     frameworkUrl: "/flower-demo/Build/public.framework.js",
@@ -17,21 +19,21 @@ function App() {
 
   const handlePetalElongationChange = (event) => {
     const value = parseFloat(event.target.value);
-    console.log("Sending SetPetalElongation with value:", value);
+    // console.log("Sending SetPetalElongation with value:", value);
     setPetalElongation(value);
     sendMessage("FlowerManager", "SetPetalElongation", value);
   };
   
   const handlePetalCompressionChange = (event) => {
     const value = parseFloat(event.target.value);
-    console.log("Sending SetPetalCompression with value:", value);
+    // console.log("Sending SetPetalCompression with value:", value);
     setPetalCompression(value);
     sendMessage("FlowerManager", "SetPetalCompression", value);
   };
   
   const handlePetalTwistChange = (event) => {
     const value = parseFloat(event.target.value);
-    console.log("Sending SetPetalTwist with value:", value);
+    // console.log("Sending SetPetalTwist with value:", value);
     setPetalTwist(value);
     sendMessage("FlowerManager", "SetPetalTwist", value);
   };
@@ -42,18 +44,35 @@ function App() {
     sendMessage("FlowerManager", "SetPetalSize", value);
   };
 
-  React.useEffect(() => {
-    const handleUnityMessage = (message) => {
-      console.log("Message from Unity:", message);
-    };
-    
-    addEventListener("message", handleUnityMessage);
-    return () => removeEventListener("message", handleUnityMessage);
-  }, [addEventListener, removeEventListener]);
+  useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        width: '100%',
+        height: `${window.innerHeight}px`,
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="App">
-      <Unity unityProvider={unityProvider} style={{ width: 800, height: 600 }} />
+      {!isLoaded && (
+        <div className="loading-overlay">
+          <p>Loading... {Math.round(loadingProgression * 100)}%</p>
+        </div>
+      )}
+      <Unity 
+        unityProvider={unityProvider} 
+        style={{ 
+          width: dimensions.width, 
+          height: dimensions.height, 
+          visibility: isLoaded ? "visible" : "hidden" 
+        }} 
+      />
       {/* ... (keep existing sliders for petal count and size) */}
       <div>
         <label>
