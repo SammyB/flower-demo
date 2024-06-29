@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/flower-demo/static/css/main.3812bd6d.css",
+    "main.js": "/flower-demo/static/js/main.d805235a.js",
+    "static/js/453.57bfa7cb.chunk.js": "/flower-demo/static/js/453.57bfa7cb.chunk.js",
+    "index.html": "/flower-demo/index.html",
+    "main.3812bd6d.css.map": "/flower-demo/static/css/main.3812bd6d.css.map",
+    "main.d805235a.js.map": "/flower-demo/static/js/main.d805235a.js.map",
+    "453.57bfa7cb.chunk.js.map": "/flower-demo/static/js/453.57bfa7cb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3812bd6d.css",
+    "static/js/main.d805235a.js"
+  ]
+}
