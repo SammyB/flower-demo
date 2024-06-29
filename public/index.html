@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
+    <div id="root"></div>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
@@ -59,9 +60,9 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/public.loader.js";
       var config = {
-        dataUrl: buildUrl + "/public.data.gz",
-        frameworkUrl: buildUrl + "/public.framework.js.gz",
-        codeUrl: buildUrl + "/public.wasm.gz",
+        dataUrl: buildUrl + "/public.data",
+        frameworkUrl: buildUrl + "/public.framework.js",
+        codeUrl: buildUrl + "/public.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Flower Demo",
