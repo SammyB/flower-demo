@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+.unity-container {
+  margin: 20px auto;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
