@@ -4,10 +4,10 @@ import './App.css';
 
 function App() {
   const { unityProvider, sendMessage } = useUnityContext({
-    loaderUrl: "Build/flower.loader.js",
-    dataUrl: "Build/flower.data",
-    frameworkUrl: "Build/flower.framework.js",
-    codeUrl: "Build/flower.wasm",
+    loaderUrl: "Build/public.loader.js",
+    dataUrl: "Build/public.data",
+    frameworkUrl: "Build/public.framework.js",
+    codeUrl: "Build/public.wasm",
   });
 
   const [petalCount, setPetalCount] = useState(5);
